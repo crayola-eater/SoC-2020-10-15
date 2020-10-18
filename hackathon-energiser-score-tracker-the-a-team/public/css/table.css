@@ -1,0 +1,29 @@
+.font-a {
+  font-family: "Quattrocento Sans", sans-serif;
+}
+
+.main-data {
+  border-collapse: collapse;
+}
+
+table {
+  margin: 2rem;
+}
+
+/* tr,
+thead,
+tbody {
+  border: 1px solid black;
+} */
+
+.cell {
+  border: 1px solid black;
+  padding: 1rem;
+  text-align: center;
+  background-color: white;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+}

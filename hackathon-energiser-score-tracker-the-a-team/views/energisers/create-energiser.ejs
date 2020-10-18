@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include("../styles.ejs") %>
+    <link rel="stylesheet" href="css/new-participant.css" />
+    <title>Create new energiser</title>
+  </head>
+  <body>
+    <%- include("../nav.ejs") %>
+    <header class="container">
+      <h1>Create an energiser</h1>
+    </header>
+    <main class="container">
+      <form method="#">
+        <div class="form-group">
+          <label for="new-energiser__name">Energiser name:</label>
+          <input
+            type="text"
+            name="name"
+            id="new-energiser__name"
+            placeholder="Enter name here"
+            required
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="new-energiser__category">Energiser category:</label>
+          <select name="category" id="new-energiser__category">
+            <option value="Speed">Speed</option>
+            <option value="Random">Random</option>
+            <option value="Brainy">Brainy</option>
+            <option value="Creative">Creative</option>
+            <option value="Physical">Physical</option>
+          </select>
+          <!-- <input
+            class="form-control"
+            type="number"
+            step="1"
+            min="0"
+            max="4"
+            name="category"
+            id="new-participant__category"
+            required
+            placeholder="Enter category here"
+          /> -->
+        </div>
+        <button
+          id="new-energiser__submit"
+          type="button"
+          class="btn btn-success"
+        >
+          Create new
+        </button>
+      </form>
+      <section id="notifications"></section>
+    </main>
+    <script>
+      {
+        const button = document.querySelector("#new-energiser__submit");
+        const notifications = document.querySelector("#notifications");
+
+        button.addEventListener("click", async () => {
+          const els = {
+            name: document.querySelector("#new-energiser__name"),
+            category: document.querySelector("#new-energiser__category"),
+          };
+
+          const values = {
+            name: els.name.value.trim(),
+            category: els.category.value.trim(),
+          };
+
+          if (
+            [els.name, els.category].some(
+              (el) => !el.checkValidity() || el.value.trim().length === 0
+            )
+          ) {
+            notifications.textContent = "Please check all fields";
+            return;
+          } else {
+            notifications.textContent = "";
+          }
+
+          console.assert(values.name && values.category, values);
+
+          const response = await fetch("/api/energisers/", {
+            method: "POST",
+            body: JSON.stringify({
+              name: values.name,
+              category: values.category,
+            }),
+            headers: { "Content-Type": "application/json" },
+          });
+
+          if (response.ok) {
+            notifications.textContent = "Created energiser successfully!";
+            document.location.href = "/get-all-energisers";
+          } else {
+            notifications.textContent =
+              "Failed to create energiser, please try again later.";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

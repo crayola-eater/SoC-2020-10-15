@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include("../styles.ejs") %>
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    <title>All sessions</title>
+    <script src="js/sessions.js" defer type="module"></script>
+  </head>
+  <body>
+    <%- include("../nav.ejs") %>
+    <header class="container">
+      <h1>All energiser sessions</h1>
+    </header>
+    <section class="form-group container">
+      <input
+        class="form-control"
+        type="text"
+        id="search-by-energiser-name"
+        placeholder="Search for sessions by energiser name"
+      />
+    </section>
+    <main class="container">
+      <span>Getting data, please wait...</span>
+    </main>
+  </body>
+</html>

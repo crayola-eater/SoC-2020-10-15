@@ -1,0 +1,34 @@
+{
+  "name": "hackathon-energiser-score-tracker-the-a-team",
+  "version": "1.0.0",
+  "description": "We will be building our first full stack app. It will be a chance to embed everything we've learnt so far and practice breaking down problems into solvable chunks.",
+  "main": "plan.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r dotenv/config bin/www.js",
+    "createTables": "node -r dotenv/config ./db/scripts/createTables.js",
+    "dropTables": "node -r dotenv/config ./db/scripts/dropTables.js",
+    "populateTables": "node -r dotenv/config ./db/scripts/populateTables.js",
+    "reinitialiseTables": "node -r dotenv/config ./db/scripts/reinitialiseTables.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchoolOfCode/hackathon-energiser-score-tracker-the-a-team.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SchoolOfCode/hackathon-energiser-score-tracker-the-a-team/issues"
+  },
+  "homepage": "https://github.com/SchoolOfCode/hackathon-energiser-score-tracker-the-a-team#readme",
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.5"
+  },
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "pg": "^8.4.1"
+  }
+}

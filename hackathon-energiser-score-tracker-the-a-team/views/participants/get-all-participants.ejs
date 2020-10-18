@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include("../styles.ejs") %>
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    <title>All participants</title>
+    <script src="js/participants.js" defer type="module"></script>
+    <style>
+      .btn-group {
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("../nav.ejs") %>
+    <header class="container">
+      <h1>All participants</h1>
+    </header>
+    <section class="form-group container">
+      <input
+        class="form-control"
+        type="text"
+        id="search-for-participants"
+        placeholder="Search for participants by name"
+      />
+      <div class="btn-group">
+        <button id="search-by-name" type="button" class="btn btn-info">
+          Search by name
+        </button>
+        <button id="search-by-bootcamp" type="button" class="btn btn-info">
+          Search by bootcamp
+        </button>
+      </div>
+    </section>
+
+    <main class="container">
+      <span>Getting data, please wait...</span>
+    </main>
+  </body>
+</html>

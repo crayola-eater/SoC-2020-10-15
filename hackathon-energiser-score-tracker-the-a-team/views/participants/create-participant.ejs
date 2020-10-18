@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include("../styles.ejs") %>
+    <link rel="stylesheet" href="css/new-participant.css" />
+    <title>Create new participant</title>
+  </head>
+  <body>
+    <%- include("../nav.ejs") %>
+    <header class="container">
+      <h1>Create a participant</h1>
+    </header>
+    <main class="container">
+      <form method="#">
+        <div class="form-group">
+          <label for="new-participant__name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            id="new-participant__name"
+            placeholder="Enter name here"
+            required
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="new-participant__bootcamp">Cohort:</label>
+          <input
+            class="form-control"
+            type="number"
+            step="1"
+            min="0"
+            max="4"
+            name="bootcamp"
+            id="new-participant__bootcamp"
+            required
+            placeholder="Enter cohort here"
+          />
+        </div>
+        <button
+          id="new-participant__submit"
+          type="button"
+          class="btn btn-success"
+        >
+          Create new
+        </button>
+      </form>
+      <section id="notifications"></section>
+    </main>
+    <script>
+      {
+        const button = document.querySelector("#new-participant__submit");
+        const notifications = document.querySelector("#notifications");
+
+        button.addEventListener("click", async () => {
+          const els = {
+            name: document.querySelector("#new-participant__name"),
+            bootcamp: document.querySelector("#new-participant__bootcamp"),
+          };
+
+          const values = {
+            name: els.name.value.trim(),
+            bootcamp: els.bootcamp.value.trim(),
+          };
+
+          if (
+            [els.name, els.bootcamp].some(
+              (el) => !el.checkValidity() || el.value.trim().length === 0
+            )
+          ) {
+            notifications.textContent = "Please check all fields";
+            return;
+          } else {
+            notifications.textContent = "";
+          }
+
+          console.assert(values.name && values.bootcamp, values);
+
+          const response = await fetch("/api/participants/", {
+            method: "POST",
+            body: JSON.stringify({
+              name: values.name,
+              bootcamp: values.bootcamp,
+            }),
+            headers: { "Content-Type": "application/json" },
+          });
+
+          if (response.ok) {
+            notifications.textContent = "Created participant successfully!";
+            document.location.href = "/get-all-participants";
+          } else {
+            notifications.textContent =
+              "Failed to create participant, please try again later.";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

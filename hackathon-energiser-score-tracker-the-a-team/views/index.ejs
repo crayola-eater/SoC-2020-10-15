@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to energiser data!</title>
+    <%- include("styles.ejs") %>
+    <style>
+      .animation {
+        margin: 2rem auto;
+        animation: intro 0.75s linear forwards;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .animation h1 {
+        margin: 2rem auto;
+      }
+
+      .landing-page-image {
+        height: 50vh;
+      }
+
+      @keyframes intro {
+        from {
+          opacity: 0%;
+          transform: translateY(5rem);
+        }
+        to {
+          opacity: 100%;
+          transform: translateY(0rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("nav.ejs") %>
+    <main class="container">
+      <div class="animation justify-content-center">
+        <h1>Welcome, try the links above!</h1>
+        <p>Why not see everyone's scores?</p>
+        <p>Or searching for session by energiser?</p>
+        <img
+          class="landing-page-image"
+          src="https://miro.medium.com/max/3496/1*zvdDs6CHvYI3PODOtb4eSw.jpeg"
+          alt="energiser"
+        />
+      </div>
+    </main>
+  </body>
+</html>
